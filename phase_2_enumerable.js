@@ -7,10 +7,9 @@ Array.prototype.myEach = function(callback) {
 };
 
 const exclamation = function(el) {
-  console.log(el + '!');
+  console.log((el + '!'));
 };
-
-// [1,2,3].myEach(exclamation);
+;
 
 Array.prototype.myMap = function(callback) {
   let arr = [];
