@@ -7,14 +7,40 @@ Array.prototype.myEach = function(callback) {
 };
 
 const exclamation = function(el) {
-  console.log((el + '!'));
+  return (el + '!');
 };
-;
 
 Array.prototype.myMap = function(callback) {
   let arr = [];
-  arr.push(this.myEach(callback));
-  console.log(arr);
+
+  this.myEach(function(el) {
+    arr.push(callback(el));  
+  });
+  return arr;
 };
 
-[1, 2, 3].myMap(exclamation);
+// console.log([1, 2, 3].myMap(exclamation));
+
+const addition = function(acc, el) {
+  return acc + el;
+};
+
+const multiplication = function (acc, el) {
+  return acc * el;
+};
+
+Array.prototype.myReduce = function(callback, initialValue) {
+
+  if(initialValue === undefined) {
+    initialValue = this.shift();
+  };
+
+  this.myEach(function(el){
+    initialValue = callback(initialValue, el);
+  });
+  
+  return initialValue;
+};
+
+console.log([1, 2, 3].myReduce(multiplication));
+console.log([1, 2, 3].myReduce(multiplication, 25));
